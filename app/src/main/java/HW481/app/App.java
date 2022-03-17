@@ -4,6 +4,8 @@
 package HW481.app;
 
 import HW481.list.LinkedList;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static HW481.utilities.StringUtils.join;
 import static HW481.utilities.StringUtils.split;
@@ -18,4 +20,14 @@ public class App {
         String result = join(tokens);
         System.out.println(WordUtils.capitalize(result));
     }
+    
+    public static boolean search(ArrayList<Integer> array, int e) {
+        System.out.println("inside search");
+        if (array == null) return false;
+  
+        for (int elt : array) {
+          if (elt == e) return true;
+        }
+        return false;
+      }
 }
