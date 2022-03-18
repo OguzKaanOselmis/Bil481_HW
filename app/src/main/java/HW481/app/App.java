@@ -78,7 +78,7 @@ public class App{
           }catch(Exception e){
             System.out.println(e.getMessage());
             Map<String, String> map = new HashMap<String, String>();
-            map.put("result", "could not be computed due to invalid input.");
+            map.put("result", "Could not be computed due to invalid input.");
             return new ModelAndView(map, "compute.mustache");  
           }
             inputList.add(value);
@@ -93,7 +93,7 @@ public class App{
           }catch(Exception e){
             System.out.println(e.getMessage());
             Map<String, String> map = new HashMap<String, String>();
-            map.put("result", "could not be computed due to invalid input.");
+            map.put("result", "Could not be computed due to invalid input.");
             return new ModelAndView(map, "compute.mustache"); 
           }
           String input3 = req.queryParams("input3").replaceAll("\\s","");
@@ -104,14 +104,17 @@ public class App{
           }catch(Exception e){
             System.out.println(e.getMessage());
             Map<String, String> map = new HashMap<String, String>();
-            map.put("result", "could not be computed due to invalid input.");
+            map.put("result", "Could not be computed due to invalid input.");
             return new ModelAndView(map, "compute.mustache");
           }
 
           boolean result = App.search(inputList, input2AsInt, input3AsInt);
 
-          Map<String, Boolean> map = new HashMap<String, Boolean>();
-          map.put("result", result);
+          Map<String, String> map = new HashMap<String, String>();
+          if(result)
+            map.put("result", "The list contains one of the combinations of given two numbers");
+          else
+            map.put("result", "The list does NOT contain any combination of given two numbers");
           return new ModelAndView(map, "compute.mustache");
         }, new MustacheTemplateEngine());
 
