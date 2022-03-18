@@ -1,21 +1,28 @@
 <title>My application deployed automatically</title>
-  <h1>Welcome to my WebApp</h1>
+	<br>
+  <h1 style="text-align:center;">Welcome to my App</h1>
   <hr>
   <h2>Guide:
-  <p><h4>This app shows if given list contains any mathematical combination ("+","-","*","/") of given two integers.
+  <h4>This app shows if given list contains any mathematical combination ( + , - , * , / ) of given two integers.
   <br>Inputs should be like:
   <br>User should give a list of integers seperated by lines to the first area.
-  <br>To second and third area, user should give a integer.
+  <br>To second and third area, user should give an integer.
   <br>Then press button to calculate.
   <hr>
   <br>
-    Result is {{result}}
 
 
   <form action="compute" method="post">
+  	<p>Enter list of integers seperated by lines:<br>
         <textarea name="input1" rows="10" cols="30"></textarea>
+        <p>Enter an integer into the tow boxes, one for each:<br>
         <textarea name="input2" rows="10" cols="30"></textarea>
         <textarea name="input3" rows="10" cols="30"></textarea>
         <br>
         <input type="submit">
   </form>
+  
+  <h2>
+    <p style="text-align:center;">
+    Result is {{result}}
+ </p>
