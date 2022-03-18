@@ -59,7 +59,19 @@ public class App{
         port(port);
         logger.error("Current port number:" + port);
 
-        get("/", (req, res) -> "Hello, World");
+        /*get("/compute",
+            (rq, rs) -> {
+              Map<String, String> map = new HashMap<String, String>();
+              map.put("result", "not computed yet!");
+              return new ModelAndView(map, "compute.mustache");
+            },
+            new MustacheTemplateEngine());*/
+
+        get("/", 
+        (req, res) -> {
+          return new ModelAndView(null, "main.mustache");
+        },
+        new MustacheTemplateEngine());
 
         post("/compute", (req, res) -> {
           //System.out.println(req.queryParams("input1"));
