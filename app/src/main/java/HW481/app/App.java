@@ -26,14 +26,50 @@ public class App{
         return "Hello world.";
     }
 
-    public static boolean search(ArrayList<Integer> array, int e) {
-      System.out.println("inside search");
-      if (array == null) return false;
+    public static boolean search(ArrayList<Integer> resultList, int input2AsInt, int input3AsInt) {
+      java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
+      list.add(input2AsInt + input3AsInt);
+      list.add(input2AsInt - input3AsInt);
+      list.add(input3AsInt - input2AsInt);
+      list.add(input2AsInt * input3AsInt);
+      list.add(input2AsInt / input3AsInt);
+      list.add(input3AsInt / input2AsInt);
+      list.add(input2AsInt);
+      list.add(input3AsInt);
 
-      for (int elt : array) {
-        if (elt == e) return true;
-      }
+      for(int i=0;i<list.size();i++)
+        if(resultList.contains(list.get(i)))
+          return true;
+      
       return false;
+    }
+
+    public static void fillResultList(ArrayList<Integer> inputList, ArrayList<Integer> resultList){
+        for(int i=0;i<inputList.size();i++){
+          for(int j=0;j<inputList.size();j++){
+            if(i!=j){
+              int temp = inputList.get(j);
+              if(!resultList.contains(temp))
+                resultList.add(temp);
+
+              temp = inputList.get(i) + inputList.get(j);
+              if(!resultList.contains(temp))
+                resultList.add(temp);
+
+              temp = inputList.get(i) - inputList.get(j);
+              if(!resultList.contains(temp))
+                resultList.add(temp);
+              
+              temp = inputList.get(i) * inputList.get(j);
+              if(!resultList.contains(temp))
+                resultList.add(temp);
+
+              temp = inputList.get(i) / inputList.get(j);
+              if(!resultList.contains(temp))
+                resultList.add(temp);
+            }
+          }
+        }
     }
 
     public static void main(String[] args) {
@@ -54,19 +90,49 @@ public class App{
           java.util.Scanner sc1 = new java.util.Scanner(input1);
           sc1.useDelimiter("[;\r\n]+");
           java.util.ArrayList<Integer> inputList = new java.util.ArrayList<>();
+          java.util.ArrayList<Integer> resultList = new java.util.ArrayList<>();
+          
           while (sc1.hasNext())
           {
-            int value = Integer.parseInt(sc1.next().replaceAll("\\s",""));
+            int value=0;
+          try{
+            value = Integer.parseInt(sc1.next().replaceAll("\\s",""));
+          }catch(Exception e){
+            System.out.println(e.getMessage());
+            Map<String, Boolean> map = new HashMap<String, Boolean>();
+            map.put("result", false);
+            return new ModelAndView(map, "compute.mustache");  
+          }
             inputList.add(value);
           }
           sc1.close();
           System.out.println(inputList);
 
-
+          int input2AsInt=0;
           String input2 = req.queryParams("input2").replaceAll("\\s","");
-          int input2AsInt = Integer.parseInt(input2);
+          try{
+            input2AsInt = Integer.parseInt(input2);
+          }catch(Exception e){
+            System.out.println(e.getMessage());
+            Map<String, Boolean> map = new HashMap<String, Boolean>();
+            map.put("result", false);
+            return new ModelAndView(map, "compute.mustache");
+          }
+          String input3 = req.queryParams("input3").replaceAll("\\s","");
 
-          boolean result = App.search(inputList, input2AsInt);
+          int input3AsInt = 0;
+          try{
+            input3AsInt = Integer.parseInt(input3);
+          }catch(Exception e){
+            System.out.println(e.getMessage());
+            Map<String, Boolean> map = new HashMap<String, Boolean>();
+            map.put("result", false);
+            return new ModelAndView(map, "compute.mustache");
+          }
+          
+          fillResultList(inputList, resultList);
+
+          boolean result = App.search(resultList, input2AsInt, input3AsInt);
 
           Map<String, Boolean> map = new HashMap<String, Boolean>();
           map.put("result", result);
@@ -90,5 +156,7 @@ public class App{
         }
         return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
+
+    
 }
 
