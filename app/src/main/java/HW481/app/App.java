@@ -7,6 +7,12 @@ import static spark.Spark.get;
 import static spark.Spark.port;
 import static spark.Spark.post;
 
+//import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +39,7 @@ public class App{
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
 
+        Logger logger = LogManager.getLogger(App.class);
         int port = Integer.parseInt(System.getenv("PORT"));
         port(port);
         logger.error("Current port number:" + port);
