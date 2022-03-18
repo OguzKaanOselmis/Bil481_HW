@@ -77,8 +77,8 @@ public class App{
             value = Integer.parseInt(sc1.next().replaceAll("\\s",""));
           }catch(Exception e){
             System.out.println(e.getMessage());
-            Map<String, Boolean> map = new HashMap<String, Boolean>();
-            map.put("result", false);
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("result", "could not be computed due to invalid input.");
             return new ModelAndView(map, "compute.mustache");  
           }
             inputList.add(value);
@@ -92,9 +92,9 @@ public class App{
             input2AsInt = Integer.parseInt(input2);
           }catch(Exception e){
             System.out.println(e.getMessage());
-            Map<String, Boolean> map = new HashMap<String, Boolean>();
-            map.put("result", false);
-            return new ModelAndView(map, "compute.mustache");
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("result", "could not be computed due to invalid input.");
+            return new ModelAndView(map, "compute.mustache"); 
           }
           String input3 = req.queryParams("input3").replaceAll("\\s","");
 
@@ -103,8 +103,8 @@ public class App{
             input3AsInt = Integer.parseInt(input3);
           }catch(Exception e){
             System.out.println(e.getMessage());
-            Map<String, Boolean> map = new HashMap<String, Boolean>();
-            map.put("result", false);
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("result", "could not be computed due to invalid input.");
             return new ModelAndView(map, "compute.mustache");
           }
 
