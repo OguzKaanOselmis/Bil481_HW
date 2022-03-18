@@ -55,23 +55,11 @@ public class App{
         port(getHerokuAssignedPort());
 
         Logger logger = LogManager.getLogger(App.class);
-        int port = Integer.parseInt(System.getenv("PORT"));
-        port(port);
-        logger.error("Current port number:" + port);
+        //int port = Integer.parseInt(System.getenv("PORT"));
+        //port(port);
+        //logger.error("Current port number:" + port);
 
-        /*get("/compute",
-            (rq, rs) -> {
-              Map<String, String> map = new HashMap<String, String>();
-              map.put("result", "not computed yet!");
-              return new ModelAndView(map, "compute.mustache");
-            },
-            new MustacheTemplateEngine());*/
-
-        get("/", 
-        (req, res) -> {
-          return new ModelAndView(null, "main.mustache");
-        },
-        new MustacheTemplateEngine());
+        get("/", (req, res) -> "You are currently in Main page. To go to compute app please visit:\nhttps://lit-ocean-13295.herokuapp.com/compute");
 
         post("/compute", (req, res) -> {
           //System.out.println(req.queryParams("input1"));
