@@ -26,50 +26,29 @@ public class App{
         return "Hello world.";
     }
 
-    public static boolean search(ArrayList<Integer> resultList, int input2AsInt, int input3AsInt) {
+    public static boolean search(ArrayList<Integer> inputList, int input2AsInt, int input3AsInt) {
+      if(inputList == null)
+        return false;
+      if(inputList.size()==0)
+        return false;
+
       java.util.ArrayList<Integer> list = new java.util.ArrayList<>();
       list.add(input2AsInt + input3AsInt);
       list.add(input2AsInt - input3AsInt);
       list.add(input3AsInt - input2AsInt);
       list.add(input2AsInt * input3AsInt);
-      list.add(input2AsInt / input3AsInt);
-      list.add(input3AsInt / input2AsInt);
+      if(input3AsInt != 0)
+        list.add(input2AsInt / input3AsInt);
+      if(input2AsInt != 0)
+        list.add(input3AsInt / input2AsInt);
       list.add(input2AsInt);
       list.add(input3AsInt);
 
       for(int i=0;i<list.size();i++)
-        if(resultList.contains(list.get(i)))
+        if(inputList.contains(list.get(i)))
           return true;
       
       return false;
-    }
-
-    public static void fillResultList(ArrayList<Integer> inputList, ArrayList<Integer> resultList){
-        for(int i=0;i<inputList.size();i++){
-          for(int j=0;j<inputList.size();j++){
-            if(i!=j){
-              int temp = inputList.get(j);
-              if(!resultList.contains(temp))
-                resultList.add(temp);
-
-              temp = inputList.get(i) + inputList.get(j);
-              if(!resultList.contains(temp))
-                resultList.add(temp);
-
-              temp = inputList.get(i) - inputList.get(j);
-              if(!resultList.contains(temp))
-                resultList.add(temp);
-              
-              temp = inputList.get(i) * inputList.get(j);
-              if(!resultList.contains(temp))
-                resultList.add(temp);
-
-              temp = inputList.get(i) / inputList.get(j);
-              if(!resultList.contains(temp))
-                resultList.add(temp);
-            }
-          }
-        }
     }
 
     public static void main(String[] args) {
@@ -90,7 +69,6 @@ public class App{
           java.util.Scanner sc1 = new java.util.Scanner(input1);
           sc1.useDelimiter("[;\r\n]+");
           java.util.ArrayList<Integer> inputList = new java.util.ArrayList<>();
-          java.util.ArrayList<Integer> resultList = new java.util.ArrayList<>();
           
           while (sc1.hasNext())
           {
@@ -129,10 +107,8 @@ public class App{
             map.put("result", false);
             return new ModelAndView(map, "compute.mustache");
           }
-          
-          fillResultList(inputList, resultList);
 
-          boolean result = App.search(resultList, input2AsInt, input3AsInt);
+          boolean result = App.search(inputList, input2AsInt, input3AsInt);
 
           Map<String, Boolean> map = new HashMap<String, Boolean>();
           map.put("result", result);

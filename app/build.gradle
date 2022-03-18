@@ -49,4 +49,3 @@ application {
 
 task stage(dependsOn: ['shadowJar'])
 shadowJar.mustRunAfter clean
-

@@ -13,31 +13,51 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MessageUtilsTest {
-    @Test void testGetMessage() {
-        assertEquals("Hello      World!", MessageUtils.getMessage());
+    @Test
+   public void testNotFound1() {
+      ArrayList<Integer> array = new ArrayList<>(Arrays.asList(2, 3, 10,20));
+      assertFalse(App.search(array,1,0));
     }
 
     @Test
-   public void testFound() {
-      ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-      assertTrue(App.search(array, 4));
+   public void testNotFound2() {
+      ArrayList<Integer> array = new ArrayList<>(Arrays.asList(2,3,10,20));
+      assertFalse(App.search(array,0,4));
     }
 
     @Test
-    public void testNotFound() {
-      ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-      assertFalse(App.search(array, 5));
+   public void testNotFound3() {
+      ArrayList<Integer> array = new ArrayList<>(Arrays.asList(2,3,10,20));
+      assertFalse(App.search(array,0,0));
+    }
+
+    @Test
+    public void testFound1() {
+      ArrayList<Integer> array = new ArrayList<>(Arrays.asList(2,3,10,20));
+      assertTrue(App.search(array, 2, 100));
+    }
+
+    @Test
+    public void testFound2() {
+      ArrayList<Integer> array = new ArrayList<>(Arrays.asList(2,3,10,20));
+      assertTrue(App.search(array, 9, 90));
+    }
+
+    @Test
+    public void testFound3() {
+      ArrayList<Integer> array = new ArrayList<>(Arrays.asList(2,3,10,20));
+      assertTrue(App.search(array,7,4));
     }
 
     @Test
     public void testEmptyArray() {
       ArrayList<Integer> array = new ArrayList<>();
-      assertFalse(App.search(array, 1));
+      assertFalse(App.search(array, 1,10));
     }
 
     @Test
     public void testNull() {
-      assertFalse(App.search(null, 1));
+      assertFalse(App.search(null, 1,2));
     }
 
 }
