@@ -1,28 +1,30 @@
-<title>My application deployed automatically</title>
-	<br>
-  <h1 style="text-align:center;">Welcome to my App</h1>
-  <hr>
-  <h2>Guide:
-  <h4>This app shows that if given list contains any mathematical combination ( + , - , * , / ) of given two integers.
-  <br>Inputs should be like:
-  <br>User should give a list of integers seperated by lines to the first area.
-  <br>To second and third area, user should give an integer.
-  <br>Then press button to calculate.
-  <hr>
-  <br>
+<!DOCTYPE html>
+<html>
 
+<head>
+    <title></title>
+</head>
 
-  <form action="compute" method="post">
-  	<p>Enter list of integers seperated by lines:<br>
-        <textarea name="input1" rows="10" cols="30"></textarea>
-        <p>Enter an integer into the two boxes, one for each:<br>
-        <textarea name="input2" rows="10" cols="30"></textarea>
-        <textarea name="input3" rows="10" cols="30"></textarea>
-        <br>
-        <input type="submit">
-  </form>
-  
-  <h2>
-    <p style="text-align:center;">
-    Result: {{result}}
- </p>
+<body style="color: rgb(0, 0, 0); background-color: rgb(173, 213, 255);">
+    <p>
+        <title>My application deployed automatically</title>
+    </p>
+    <h1 style="text-align:center;">Welcome to my App</h1>
+    <hr>
+    <h2><span style="color: rgb(0, 0, 0);">Guide:</span></h2>
+    <h4><span style="color: rgb(0, 0, 0);">This app shows that if given list contains any mathematical combination ( + , - , * , / ) of given two integers.<br>Inputs should be like:<br>User should give a list of integers seperated by lines to the first area.<br>To second and third area, user should give an integer.<br>Then press button to calculate.</span></h4>
+    <h4 style='color: rgb(0, 0, 0); font-family: "Times New Roman"; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;'>Github source code: <a href="https://github.com/DamnedSquirrel/Bil481_HW" style="user-select: auto;">https://github.com/DamnedSquirrel/Bil481_HW</a><span style="color: rgb(0, 0, 0);"></span>
+        <hr>
+    </h4>
+    <h4><br>
+        <form action="compute" method="post">
+            <p>Enter list of integers seperated by lines:<br><textarea name="input1" rows="10" cols="30"></textarea></p>
+            <p>Enter an integer into the two boxes, one for each:<br><textarea name="input2" rows="10" cols="30"></textarea> <textarea name="input3" rows="10" cols="30"></textarea><br><input type="submit"></p>
+        </form>
+    </h4>
+    <h2>
+        <p style="text-align:center;">Result: {{result}}</p>
+    </h2>
+</body>
+
+</html>
