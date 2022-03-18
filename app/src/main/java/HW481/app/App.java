@@ -59,7 +59,12 @@ public class App{
         //port(port);
         //logger.error("Current port number:" + port);
 
-        get("/", (req, res) -> "You are currently in Main page. To go to compute app please visit:\nhttps://lit-ocean-13295.herokuapp.com/compute");
+        get("/",
+            (rq, rs) -> {
+                Map<String, String> map = new HashMap<String, String>();
+                return new ModelAndView(map, "main.mustache");
+            },
+            new MustacheTemplateEngine()); 
 
         post("/compute", (req, res) -> {
           //System.out.println(req.queryParams("input1"));
